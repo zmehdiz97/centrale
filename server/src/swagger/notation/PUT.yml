@@ -1,12 +1,16 @@
 Update an user based on the sent information
 ---
 tags:
-  - user
+  - notation
 parameters:
   - name: username
     in: path
     type: string
-    description: the username of the user
+    description: the last name of the user
+  - name: name
+    in: path
+    type: string
+    description: the last name of the user
   - name: body
     in: body
     schema:

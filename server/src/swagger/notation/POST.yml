@@ -1,18 +1,22 @@
-Update an user based on the sent information
+Create an user based on the sent information
 ---
 tags:
-  - user
+  - notation
 parameters:
   - name: username
     in: path
     type: string
-    description: the username of the user
+    description: the last name of the user
+  - name: name
+    in: path
+    type: string
+    description: the title of the movie
   - name: body
     in: body
     schema:
       type: object
       properties:
-        age:
+        note:
           type: integer
           description: The age of the user
 responses:

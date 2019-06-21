@@ -16,20 +16,27 @@ class UserResource(Resource):
 
     @staticmethod
     @swag_from("../swagger/user/GET.yml")
-    def get(last_name, first_name):
+    def get(username):
         """ Return an user key information based on his name """
-        user = UserRepository.get(last_name=last_name, first_name=first_name)
-        return jsonify({"user": user.json})
+        m = UserRepository.get(username=username)
+        d = {}
+        d['username'] = m.username
+        d['age'] = m.age
+        d['films'] = []
+        for l in m.notes : 
+            d['films'].append(l.name)
+        return(jsonify(d))          
+
 
     @staticmethod
     @parse_params(
         Argument("age", location="json", required=True, help="The age of the user.")
     )
     @swag_from("../swagger/user/POST.yml")
-    def post(last_name, first_name, age):
+    def post(username, age):
         """ Create an user based on the sent information """
         user = UserRepository.create(
-            last_name=last_name, first_name=first_name, age=age
+            username=username, age=age
         )
         return jsonify({"user": user.json})
 
@@ -38,8 +45,8 @@ class UserResource(Resource):
         Argument("age", location="json", required=True, help="The age of the user.")
     )
     @swag_from("../swagger/user/PUT.yml")
-    def put(last_name, first_name, age):
+    def put(username, age):
         """ Update an user based on the sent information """
         repository = UserRepository()
-        user = repository.update(last_name=last_name, first_name=first_name, age=age)
+        user = repository.update(username=username, age=age)
         return jsonify({"user": user.json})

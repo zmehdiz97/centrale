@@ -3,11 +3,7 @@ Create an user based on the sent information
 tags:
   - user
 parameters:
-  - name: last_name
-    in: path
-    type: string
-    description: the last name of the user
-  - name: first_name
+  - name: username
     in: path
     type: string
     description: the last name of the user

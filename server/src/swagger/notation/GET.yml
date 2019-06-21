@@ -1,9 +1,13 @@
 Return an user key information based on his name
 ---
 tags:
-  - user
+  - notation
 parameters:
   - name: username
+    in: path
+    type: string
+    description: the last name of the user
+  - name: name
     in: path
     type: string
     description: the last name of the user
